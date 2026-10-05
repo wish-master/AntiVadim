@@ -13,7 +13,8 @@
         "title": "AntiVadim",
         "fullscreen": false,
         "resizable": false,
-        "decorations": false
+        "decorations": false,
+        "url": "https://foxford.ru"
       }
     ],
     "security": {
