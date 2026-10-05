@@ -1,4 +1,4 @@
-# macOS Educational Kiosk Browser (Tauri v2)
+# AntiVadim: macOS Educational Kiosk Browser (Tauri v2)
 
 An ironclad, inescapable fullscreen kiosk browser built using **Rust** and **Tauri v2** designed to keep children focused strictly on their educational platform (**Foxford.ru**).
 
