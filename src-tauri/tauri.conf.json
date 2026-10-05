@@ -10,9 +10,10 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "antivadim",
-        "width": 800,
-        "height": 600
+        "title": "AntiVadim",
+        "fullscreen": true,
+        "resizable": false,
+        "decorations": false
       }
     ],
     "security": {
