@@ -26,7 +26,7 @@ This application completely locks down the macOS user environment, suppressing n
 
 Because the application disables all traditional methods of window closure and system navigation, a hardcoded global hotkey sequence has been implemented so you can cleanly exit the kiosk.
 
-Press **`Command + Option + Shift + P`** simultaneously to instantly close the application.
+Press **`Command + Shift + P`** simultaneously to instantly close the application.
 
 ---
 
@@ -39,9 +39,9 @@ Add the native target configuration constraints to your `src-tauri/Cargo.toml`:
 
 ```toml
 [target.'cfg(target_os = "macos")'.dependencies]
-objc2 = "0.5"
-objc2-app-kit = { version = "0.2", features = ["NSWindow", "NSApplication", "NSWindowTabGroup"] }
-tauri-plugin-global-shortcut = "2.0.0"
+objc2 = "x.x.x"
+objc2-app-kit = { version = "y.y.y", features = ["NSWindow", "NSApplication", "NSWindowTabGroup"] }
+tauri-plugin-global-shortcut = "z.z.z"
 ```
 
 ### 2. Capabilities Profile
@@ -50,6 +50,7 @@ Ensure permissions for the hotkey registry are explicitly allowed for production
 ```json
 "permissions": [
   "core:default",
+  "opener:default",
   "global-shortcut:allow-is-registered",
   "global-shortcut:allow-register",
   "global-shortcut:allow-unregister"
@@ -71,7 +72,7 @@ To compile a standalone, optimized macOS `.app` bundle:
 cargo tauri build
 ```
 The resulting package will be outputted to:
-`src-tauri/target/release/bundle/macos/YOUR_APP_NAME.app`
+`src-tauri/target/release/bundle/macos/antivadim.app`
 
 ---
 
