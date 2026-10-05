@@ -1,4 +1,6 @@
 use tauri::Manager;
+use std::str::FromStr;
+use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut, ShortcutState};
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -6,6 +8,8 @@ fn greet(name: &str) -> String {
 }
 
 fn main() {
+    let exit_shortcut = Shortcut::from_str("CommandOrControl+Shift+P").unwrap();
+
     tauri::Builder::default()
         .enable_macos_default_menu(false)
         .setup(|app| {
@@ -47,6 +51,17 @@ fn main() {
             Ok(())
         })
         .plugin(tauri_plugin_opener::init())
+        .plugin(
+            tauri_plugin_global_shortcut::Builder::new()
+                .with_shortcut(exit_shortcut)
+                .unwrap()
+                .with_handler(move |app_handle, shortcut, event| {
+                    if event.state == ShortcutState::Pressed && shortcut == &exit_shortcut {
+                        app_handle.exit(0);
+                    }
+                })
+                .build(),
+        )
         .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -1,12 +1,9 @@
 [package]
-name = "antivadim"
+name = "AntiVadim"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "A simple web kiosk app"
+authors = ["Dmitry Vishin (aka wish-master)"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
@@ -14,8 +11,7 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+tauri-plugin-global-shortcut = "2.0.0"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 objc2 = "0.6.4"
