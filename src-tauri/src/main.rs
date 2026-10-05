@@ -1,6 +1,6 @@
-use tauri::Manager;
 use std::str::FromStr;
-use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut, ShortcutState};
+use tauri::Manager;
+use tauri_plugin_global_shortcut::{Shortcut, ShortcutState};
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -25,16 +25,17 @@ fn main() {
                     let _ = window.set_always_on_top(true);
 
                     // 2. Kill the sliding Dock and Menu bar behavior natively
-                    unsafe {
-                        if let Some(mtm) = MainThreadMarker::new() {
-                            let shared_app = NSApp(mtm);
-                            let options = NSApplicationPresentationOptions::HideDock
-                                | NSApplicationPresentationOptions::HideMenuBar
-                                | NSApplicationPresentationOptions::DisableProcessSwitching // Blocks Cmd+Tab
-                                | NSApplicationPresentationOptions::DisableForceQuit;     // Blocks Cmd+Option+Esc
+                    if let Some(mtm) = MainThreadMarker::new() {
+                        let shared_app = NSApp(mtm);
+                        let options = NSApplicationPresentationOptions::HideDock
+                            | NSApplicationPresentationOptions::HideMenuBar
+                            | NSApplicationPresentationOptions::DisableProcessSwitching // Blocks Cmd+Tab
+                            | NSApplicationPresentationOptions::DisableForceQuit      // Blocks Cmd+Option+Esc
+                            | NSApplicationPresentationOptions::DisableSessionTermination
+                            | NSApplicationPresentationOptions::DisableHideApplication
+                            | NSApplicationPresentationOptions::DisableAppleMenu;
 
-                            shared_app.setPresentationOptions(options);
-                        }
+                        shared_app.setPresentationOptions(options);
                     }
 
                     // 3. Size a clean, borderless canvas to the physical screen boundaries

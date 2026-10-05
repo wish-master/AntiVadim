@@ -9,6 +9,12 @@ async function greet() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+    }
+  });
+
   greetInputEl = document.querySelector("#greet-input");
   greetMsgEl = document.querySelector("#greet-msg");
   document.querySelector("#greet-form").addEventListener("submit", (e) => {

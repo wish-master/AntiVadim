@@ -11,7 +11,7 @@
     "windows": [
       {
         "title": "AntiVadim",
-        "fullscreen": true,
+        "fullscreen": false,
         "resizable": false,
         "decorations": false
       }
