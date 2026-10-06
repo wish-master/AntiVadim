@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "antivadim",
+  "productName": "AntiVadim",
   "version": "0.1.0",
   "identifier": "org.github.wish-master.antivadim",
   "build": {
@@ -11,6 +11,7 @@
     "windows": [
       {
         "title": "AntiVadim",
+        "create": false,
         "fullscreen": false,
         "resizable": false,
         "decorations": false,
