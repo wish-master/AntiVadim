@@ -83,5 +83,13 @@ Because you are compiling this binary locally without an active Apple Developer 
 2. **Right-click (or Ctrl+Click)** the application and select **Open**.
 3. Click **Open Anyway** in the macOS security verification prompt to grant permissions permanently.
 
+### Running on Another Machine (DMG Transfer)
+
+When transferring the DMG or `.app` bundle to another machine, quarantine flags and missing executable permissions will prevent the application from opening. To ensure seamless operation and remove unnecessary execution barriers, run:
+
+```bash
+xattr -cr AntiVadim.app && chmod +x AntiVadim.app/Contents/MacOS/*
+```
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
