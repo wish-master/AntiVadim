@@ -1,6 +1,6 @@
 # AntiVadim: macOS Educational Kiosk Browser (Tauri v2)
 
-An ironclad, inescapable fullscreen kiosk browser built using **Rust** and **Tauri v2** designed to keep children focused strictly on their educational platform (**Foxford.ru**).
+An ironclad, inescapable fullscreen kiosk browser built using **Rust** and **Tauri v2** designed to keep children focused strictly on their educational platform.
 
 This application completely locks down the macOS user environment, suppressing native desktop controls, system navigation menus, and shortcut escapes to create a completely isolated workstation environment.
 
@@ -18,7 +18,7 @@ This application completely locks down the macOS user environment, suppressing n
 
 * **Backend:** Rust, Tauri v2
 * **OS Interop Layer:** `objc2`, `objc2-app-kit` (Natively targeting AppKit / Cocoa framework configurations)
-* **Frontend:** Built-in Webkit View engine (`WKWebView`) pointing directly to `https://foxford.ru`
+* **Frontend:** Built-in Webkit View engine (`WKWebView`) pointing directly to a url from the configuration file.
 
 ---
 
@@ -46,13 +46,13 @@ The configuration file is searched in the following locations (in priority order
 
 Because the application disables all traditional methods of window closure and system navigation, a configurable global hotkey sequence (default: `CmdOrCtrl+Shift+P`) has been implemented so you can cleanly exit the kiosk.
 
-Press **`Command + Shift + P`** (or your configured shortcut) simultaneously to instantly close the application.
+Press your configured shortcut simultaneously to instantly close the application.
 
 ---
 
 ## 🔧 Prerequisites & Setup
 
-Ensure you have the Rust toolchain and Tauri v2 prerequisites installed on your machine.
+To build the app locally, ensure you have the Rust toolchain and Tauri v2 prerequisites installed on your machine.
 
 ### 1. System Dependencies
 Add the native target configuration constraints to your `src-tauri/Cargo.toml`:
@@ -96,14 +96,7 @@ The resulting package will be outputted to:
 
 ---
 
-## 📝 Gatekeeper Installation Note
-
-Because you are compiling this binary locally without an active Apple Developer Certificate registry subscription:
-1. Drag the compiled `.app` package into your `/Applications` directory.
-2. **Right-click (or Ctrl+Click)** the application and select **Open**.
-3. Click **Open Anyway** in the macOS security verification prompt to grant permissions permanently.
-
-### Running on Another Machine (DMG Transfer)
+## 📝 Gatekeeper Running on Another Machine (DMG Transfer) Note
 
 When transferring the DMG or `.app` bundle to another machine, quarantine flags and missing executable permissions will prevent the application from opening. To ensure seamless operation and remove unnecessary execution barriers, run:
 
@@ -112,4 +105,4 @@ xattr -cr AntiVadim.app && chmod +x AntiVadim.app/Contents/MacOS/*
 ```
 
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and available under the **MIT License**.
