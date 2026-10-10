@@ -14,7 +14,9 @@ dependencies = [
  "tauri-plugin-global-shortcut",
  "tauri-plugin-opener",
  "tauri-utils",
- "toml 1.1.8+spec-1.1.0",
+ "tempfile",
+ "toml 0.8.2",
+ "url",
 ]
 
 [[package]]
