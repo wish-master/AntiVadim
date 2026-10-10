@@ -1,6 +1,6 @@
 [package]
 name = "AntiVadim"
-version = "0.1.0"
+version = "0.1.3"
 description = "A simple web kiosk app"
 authors = ["Dmitry Vishin (aka wish-master)"]
 edition = "2021"
@@ -12,6 +12,9 @@ tauri-build = { version = "2", features = [] }
 tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 tauri-plugin-global-shortcut = "2.0.0"
+serde = { version = "1", features = ["derive"] }
+toml = "1.1.8+spec-1.1.0"
+tauri-utils = "2.10.1"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 objc2 = "0.6.4"

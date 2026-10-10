@@ -1,0 +1,7 @@
+# AntiVadim Configuration
+
+# Target URL to display in kiosk mode
+url = "https://foxford.ru"
+
+# Global shortcut to exit the application
+exit_shortcut = "CmdOrCtrl+Shift+P"

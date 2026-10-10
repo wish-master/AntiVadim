@@ -1,20 +1,23 @@
+mod config;
+
+use config::AppConfig;
 use std::str::FromStr;
 use tauri::Manager;
 use tauri_plugin_global_shortcut::{Shortcut, ShortcutState};
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
 fn main() {
-    let exit_shortcut = Shortcut::from_str("CommandOrControl+Shift+P").unwrap();
+    let app_config = AppConfig::load().expect("failed to load app configuration");
+    let exit_shortcut = Shortcut::from_str(&app_config.exit_shortcut).unwrap();
+    let kiosk_url = app_config.url;
 
     tauri::Builder::default()
         .enable_macos_default_menu(false)
-        .setup(|app| {
+        .setup(move |app| {
+            let mut config = app.config().app.windows[0].clone();
+            config.url = tauri_utils::config::WebviewUrl::External(kiosk_url.parse().unwrap());
+            
             let app_handle = app.handle().clone();
-            let window = tauri::WebviewWindowBuilder::from_config(app, &app.config().app.windows[0])?
+            let window = tauri::WebviewWindowBuilder::from_config(app, &config)?
                 .on_new_window(move |url, _features| {
                     if let Some(w) = app_handle.get_webview_window("main") {
                         let _ = w.navigate(url);
@@ -65,8 +68,8 @@ fn main() {
                         | NSApplicationPresentationOptions::DisableHideApplication
                         | NSApplicationPresentationOptions::DisableAppleMenu;
 
-                    shared_app.setPresentationOptions(options);
-                }
+                        shared_app.setPresentationOptions(options);
+                    }
 
                 // 3. Size a clean, borderless canvas to the physical screen boundaries
                 if let Ok(Some(monitor)) = window.current_monitor() {
@@ -97,7 +100,6 @@ fn main() {
                 })
                 .build(),
         )
-        .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

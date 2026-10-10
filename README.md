@@ -22,11 +22,31 @@ This application completely locks down the macOS user environment, suppressing n
 
 ---
 
+## ⚙️ Configuration
+
+AntiVadim supports a TOML configuration file (`config.toml`) to customize the target URL and emergency exit shortcut:
+
+```toml
+# Target URL to display in kiosk mode
+url = "https://foxford.ru"
+
+# Global shortcut to exit the application
+exit_shortcut = "CmdOrCtrl+Shift+P"
+```
+
+The configuration file is searched in the following locations (in priority order):
+1. Path specified via `--config <path>` (or `-c <path>`)
+2. Path specified via `ANTIVADIM_CONFIG` environment variable
+3. `./config.toml` in the current working directory or application bundle resources
+4. `~/.config/antivadim/config.toml` in the user's home directory
+
+---
+
 ## ⚠️ Important: The Emergency Backdoor
 
-Because the application disables all traditional methods of window closure and system navigation, a hardcoded global hotkey sequence has been implemented so you can cleanly exit the kiosk.
+Because the application disables all traditional methods of window closure and system navigation, a configurable global hotkey sequence (default: `CmdOrCtrl+Shift+P`) has been implemented so you can cleanly exit the kiosk.
 
-Press **`Command + Shift + P`** simultaneously to instantly close the application.
+Press **`Command + Shift + P`** (or your configured shortcut) simultaneously to instantly close the application.
 
 ---
 
