@@ -6,8 +6,9 @@ use tauri::Manager;
 use tauri_plugin_global_shortcut::{Shortcut, ShortcutState};
 
 fn main() {
-    let app_config = AppConfig::load().expect("failed to load app configuration");
-    let exit_shortcut = Shortcut::from_str(&app_config.exit_shortcut).unwrap();
+    let app_config = AppConfig::load();
+    let exit_shortcut = Shortcut::from_str(&app_config.exit_shortcut)
+        .expect("failed to parse exit shortcut");
     let kiosk_url = app_config.url;
 
     tauri::Builder::default()

@@ -34,11 +34,9 @@ url = "https://foxford.ru"
 exit_shortcut = "CmdOrCtrl+Shift+P"
 ```
 
-The configuration file is searched in the following locations (in priority order):
-1. Path specified via `--config <path>` (or `-c <path>`)
-2. Path specified via `ANTIVADIM_CONFIG` environment variable
-3. `./config.toml` in the current working directory or application bundle resources
-4. `~/.config/antivadim/config.toml` in the user's home directory
+The configuration is loaded as follows:
+1. `~/.config/antivadim/config.toml` (Primary path — automatically created with default settings on first launch)
+2. Built-in compiled defaults (`url = "https://foxford.ru"`, `exit_shortcut = "CmdOrCtrl+Shift+P"`)
 
 ---
 
